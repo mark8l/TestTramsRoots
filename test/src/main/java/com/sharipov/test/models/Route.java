@@ -13,25 +13,25 @@ import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
 @Entity
-@Table(name = "TramsRoots")
-public class Root {
+@Table(name = "TramsRoutes")
+public class Route {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "id")
 	private int id;
 	
-	@NotNull(message = "Code shouldn't be empty!")
+	@NotNull(message = "Code shouldn`t be empty!")
 	@Column(name = "code")
 	private int code;
 	
-	@NotEmpty(message = "Name shouldn't be empty!")
+	@NotEmpty(message = "Name shouldn`t be empty!")
 	@Size(min = 1, max = 100, message = "Name should be between 1 and 100 characters")
 	private String name;
 	
-	public Root() {}
+	public Route() {}
 	
-	public Root(int id, int code, String name) {
+	public Route(int id, int code, String name) {
 		this.id = id;
 		this.code = code;
 		this.name = name;
@@ -77,7 +77,7 @@ public class Root {
 		if (getClass() != obj.getClass()) {
 			return false;
 		}
-		Root other = (Root) obj;
+		Route other = (Route) obj;
 		return code == other.code && Objects.equals(name, other.name);
 	}
 }

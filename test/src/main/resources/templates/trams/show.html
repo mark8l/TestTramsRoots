@@ -7,16 +7,16 @@
 	</head>
 
 	<body>
-	    <p th:text="${'Id of root: ' + root.getId()}">Person's id</p>
-		<p th:text="${'Code of root: ' + root.getCode()}">Person's code</p>
-		<p th:text="${'Name of root: ' + root.getName()}">Person's name</p>
+	    <p th:text="${'Id of route: ' + route.getId()}">Person's id</p>
+		<p th:text="${'Code of route: ' + route.getCode()}">Person's code</p>
+		<p th:text="${'Name of route: ' + route.getName()}">Person's name</p>
 		<hr />
 		<form th:method="GET"
-			th:action="@{/trams/{id}/edit(id=${root.getId()})}">
+			th:action="@{/trams/{id}/edit(id=${route.getId()})}">
 			<input type="submit" value="Edit" />
 		</form>
 		<br />
-		<form th:method="DELETE" th:action="@{/trams/{id}(id=${root.getId()})}">
+		<form th:method="DELETE" th:action="@{/trams/{id}(id=${route.getId()})}">
 			<input type="submit" value="Delete" />
 		</form>
 		<br />

@@ -7,16 +7,16 @@
 	</head>
 
 	<body>
-		<p th:if="${roots.size() == 0}"
-		   th:text="${'There is no roots yet, please create new one!'}">no root</p>
-		<div th:each="root : ${roots}">
-			<a th:href="@{/trams/{id}(id=${root.getId()})}"
-			   th:text="${root.getId() + ', ' + root.getCode() + ', ' + root.getName()}">root</a>
+		<p th:if="${routes.size() == 0}"
+		   th:text="${'There is no routes yet, please create new one!'}">no root</p>
+		<div th:each="route : ${routes}">
+			<a th:href="@{/trams/{id}(id=${route.getId()})}"
+			   th:text="${route.getId() + ', ' + route.getCode() + ', ' + route.getName()}">root</a>
 		</div>
 		<br />
 		<hr />
 		<form th:method="GET" th:action="@{/trams/new}">
-			<input type="submit" value="Create new root" />
+			<input type="submit" value="Create new route" />
 		</form>
 	</body>
 

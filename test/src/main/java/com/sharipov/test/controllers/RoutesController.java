@@ -13,66 +13,66 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import com.sharipov.test.models.Root;
-import com.sharipov.test.services.RootsService;
-import com.sharipov.test.util.RootValidator;
+import com.sharipov.test.models.Route;
+import com.sharipov.test.services.RoutesService;
+import com.sharipov.test.util.RouteValidator;
 
 @Controller
 @RequestMapping("/trams")
-public class RootsController {
+public class RoutesController {
 	
-	private final RootsService rootsService;
-	private RootValidator rootValidator;
+	private final RoutesService rootsService;
+	private RouteValidator rootValidator;
 	
-	public RootsController(RootsService rootsService, RootValidator rootValidator) {
+	public RoutesController(RoutesService rootsService, RouteValidator rootValidator) {
 		this.rootsService = rootsService;
 		this.rootValidator = rootValidator;
 	}
 	
 	@GetMapping()
 	public String index(Model model) {
-		model.addAttribute("roots", rootsService.findAll());
+		model.addAttribute("routes", rootsService.findAll());
 		return "trams/index";
 	}
 
 	@GetMapping("/{id}")
 	public String show(@PathVariable("id") int id, Model model) {
-		model.addAttribute("root", rootsService.findOne(id));
+		model.addAttribute("route", rootsService.findOne(id));
 		return "trams/show";
 	}
 	@GetMapping("/new")
-	public String newRoot(@ModelAttribute("root") Root root) {
+	public String newRoot(@ModelAttribute("route") Route route) {
 		
 		return "trams/new";
 	}
 	
 	@PostMapping()
-	public String create(@ModelAttribute("root") @Valid Root root, BindingResult bindingResult) {
-		rootValidator.validate(root, bindingResult);
+	public String create(@ModelAttribute("route") @Valid Route route, BindingResult bindingResult) {
+		rootValidator.validate(route, bindingResult);
 		if(bindingResult.hasErrors()) {
 			return "trams/new";
 		}
 		
-		rootsService.save(root);
+		rootsService.save(route);
 		return "redirect:/trams";
 	}
 	
 	@GetMapping("{id}/edit")
 	public String edit(Model model, @PathVariable("id") int id){
-		model.addAttribute("root", rootsService.findOne(id));
+		model.addAttribute("route", rootsService.findOne(id));
 		return "trams/edit";
 	}
 	
 	@PatchMapping("{id}")
-	public String update(@ModelAttribute("root") @Valid Root root, BindingResult bindingResult,
+	public String update(@ModelAttribute("route") @Valid Route route, BindingResult bindingResult,
 						 @PathVariable("id") int id) {
 		
-		rootValidator.validate(root, bindingResult);
+		rootValidator.validate(route, bindingResult);
 		if(bindingResult.hasErrors()) {
 			return "trams/edit";
 		}
 		
-		rootsService.update(id, root);
+		rootsService.update(id, route);
 		return "redirect:/trams/{id}";
 	}
 	

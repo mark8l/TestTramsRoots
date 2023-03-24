@@ -7,7 +7,7 @@
 	</head>
 
 	<body>
-		<form th:method="POST" th:action="@{/trams}" th:object="${root}">
+		<form th:method="POST" th:action="@{/trams}" th:object="${route}">
 			<label for="code">Enter code: </label>
 			<input type="text" th:field="*{code}" id="code" />
 			<div style="color: red" th:if="${#fields.hasErrors('code')}"
@@ -23,7 +23,7 @@
 		</form>
 		<br />
 		<form th:method="GET" th:action="@{/trams}">
-			<input type="submit" value="Root's list" />
+			<input type="submit" value="Route's list" />
 		</form>
 	</body>
 

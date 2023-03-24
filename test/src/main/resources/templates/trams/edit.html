@@ -7,8 +7,8 @@
 	</head>
 
 	<body>
-		<form th:method="PATCH" th:action="@{/trams/{id}(id=${root.getId()})}"
-			th:object="${root}">
+		<form th:method="PATCH" th:action="@{/trams/{id}(id=${route.getId()})}"
+			th:object="${route}">
 			<label for="code">Enter code: </label>
 			<input type="text" th:field="*{code}" id="code" />
 			<div style="color: red" th:if="${#fields.hasErrors('code')}"
@@ -23,8 +23,8 @@
 			<input type="submit" value="Update" />
 		</form>
 		<br />
-		<form th:method="GET" th:action="@{/trams/{id}(id=${root.getId()})}"
-			th:object="${root}">
+		<form th:method="GET" th:action="@{/trams/{id}(id=${route.getId()})}"
+			th:object="${route}">
 			<input type="submit" value="Cancel" />
 		</form>
 	</body>

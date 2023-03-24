@@ -7,35 +7,35 @@ import java.util.Optional;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.sharipov.test.models.Root;
-import com.sharipov.test.repositories.RootRepository;
+import com.sharipov.test.models.Route;
+import com.sharipov.test.repositories.RouteRepository;
 
 @Service
 @Transactional(readOnly = true)
-public class RootsService {
-	private final RootRepository rootRepository;
+public class RoutesService {
+	private final RouteRepository rootRepository;
 	
-	public RootsService(RootRepository rootRepository) {
+	public RoutesService(RouteRepository rootRepository) {
 		this.rootRepository = rootRepository;
 	}
 	
-	public List<Root> findAll(){
+	public List<Route> findAll(){
 		return rootRepository.findAll();
 	}
 	
-	public Root findOne(int id) {
-		Optional<Root> foundRoot = rootRepository.findById(id);
+	public Route findOne(int id) {
+		Optional<Route> foundRoot = rootRepository.findById(id);
 		
 		return foundRoot.orElse(null);
 	}
 	
 	@Transactional
-	public void save(Root root) {
+	public void save(Route root) {
 		rootRepository.save(root);
 	}
 	
 	@Transactional
-	public void update(int id, Root updatedRoot) {
+	public void update(int id, Route updatedRoot) {
 		updatedRoot.setId(id);
 		rootRepository.save(updatedRoot);
 	}
@@ -45,7 +45,7 @@ public class RootsService {
 		rootRepository.deleteById(id);;
 	}
 	
-	public Optional<Root> findByCodeAndName(Root root){
+	public Optional<Route> findByCodeAndName(Route root){
 		return rootRepository.findByCodeAndName(root.getCode(), root.getName());
 	}
 }

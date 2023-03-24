@@ -4,27 +4,27 @@ import org.springframework.stereotype.Component;
 import org.springframework.validation.Errors;
 import org.springframework.validation.Validator;
 
-import com.sharipov.test.models.Root;
-import com.sharipov.test.services.RootsService;
+import com.sharipov.test.models.Route;
+import com.sharipov.test.services.RoutesService;
 
 @Component
-public class RootValidator implements Validator{
+public class RouteValidator implements Validator{
 	
-	private final RootsService rootsService;
+	private final RoutesService rootsService;
 
-	public RootValidator(RootsService rootsService) {
+	public RouteValidator(RoutesService rootsService) {
 		this.rootsService = rootsService;
 	}
 
 	@Override
 	public boolean supports(Class<?> clazz) {
 	
-		return Root.class.equals(clazz);
+		return Route.class.equals(clazz);
 	}
 
 	@Override
 	public void validate(Object target, Errors errors) {
-		Root root = (Root) target;
+		Route root = (Route) target;
 		if(rootsService.findByCodeAndName(root).isPresent()) {
 			if(!(rootsService.findByCodeAndName(root).get().equals(root))) {
 				errors.rejectValue("code", "", "Root with these code and name is alreadu exists!");
