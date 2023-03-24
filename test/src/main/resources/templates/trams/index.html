@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+
+	<head>
+		<meta charset="UTF-8" />
+		<title>Trams</title>
+	</head>
+
+	<body>
+		<p th:if="${roots.size() == 0}"
+		   th:text="${'There is no roots yet, please create new one!'}">no root</p>
+		<div th:each="root : ${roots}">
+			<a th:href="@{/trams/{id}(id=${root.getId()})}"
+			   th:text="${root.getId() + ', ' + root.getCode() + ', ' + root.getName()}">root</a>
+		</div>
+		<br />
+		<hr />
+		<form th:method="GET" th:action="@{/trams/new}">
+			<input type="submit" value="Create new root" />
+		</form>
+	</body>
+
+</html>

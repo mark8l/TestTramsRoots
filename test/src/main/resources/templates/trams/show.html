@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+
+	<head>
+		<meta charset="UTF-8" />
+		<title>Root</title>
+	</head>
+
+	<body>
+	    <p th:text="${'Id of root: ' + root.getId()}">Person's id</p>
+		<p th:text="${'Code of root: ' + root.getCode()}">Person's code</p>
+		<p th:text="${'Name of root: ' + root.getName()}">Person's name</p>
+		<hr />
+		<form th:method="GET"
+			th:action="@{/trams/{id}/edit(id=${root.getId()})}">
+			<input type="submit" value="Edit" />
+		</form>
+		<br />
+		<form th:method="DELETE" th:action="@{/trams/{id}(id=${root.getId()})}">
+			<input type="submit" value="Delete" />
+		</form>
+		<br />
+		<form th:method="GET" th:action="@{/trams}">
+			<input type="submit" value="Root's list" />
+		</form>
+	</body>
+
+</html>

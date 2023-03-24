@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+
+	<head>
+		<meta charset="UTF-8" />
+		<title>New root</title>
+	</head>
+
+	<body>
+		<form th:method="POST" th:action="@{/trams}" th:object="${root}">
+			<label for="code">Enter code: </label>
+			<input type="text" th:field="*{code}" id="code" />
+			<div style="color: red" th:if="${#fields.hasErrors('code')}"
+				th:errors="*{code}">Error's code</div>
+			<br />
+			<label for="name">Enter name: </label>
+			<input type="text" th:field="*{name}" id="name" />
+			<div style="color: red" th:if="${#fields.hasErrors('name')}"
+				th:errors="*{name}">Error's name</div>
+			<br />
+			<hr />
+			<input type="submit" value="Create" />
+		</form>
+		<br />
+		<form th:method="GET" th:action="@{/trams}">
+			<input type="submit" value="Root's list" />
+		</form>
+	</body>
+
+</html>
